@@ -1,5 +1,6 @@
 const { dFetch } = require('../../../utils/dFetch');
 const { PersonajeRes } = require('../models/PersonajeRes');
+const AWS = require('aws-sdk');
 
 module.exports.obtenerSWPeople = async () => {
     try{
@@ -15,6 +16,24 @@ module.exports.obtenerSWPeople = async () => {
         })
 
         return personajes
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
+
+module.exports.obtenerSWPeopleDyDB = async () => {
+    try{
+
+        const dynamodb = new AWS.DynamoDB.DocumentClient();
+        
+        const result = await dynamodb.scan({
+            TableName: 'PersonajesSW'
+        }).promise();
+        const personajes = result.Items;
+        
+        return personajes;
 
     }catch(error){
         console.log(error);

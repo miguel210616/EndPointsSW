@@ -6,10 +6,9 @@ module.exports.GuardarPersonajeDyDB = async (req) => {
     try{
 
         const dynamodb = new AWS.DynamoDB.DocumentClient();
-        const createAt = new Date();
         const id = v4();
 
-        const newPersonaje = new PersonajReq({ id: id, creado: createAt ,...req})
+        const newPersonaje = new PersonajReq({ ...req, id: id })
 
 
         await dynamodb.put({

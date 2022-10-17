@@ -4,8 +4,7 @@ module.exports.InsertarPersonaje = async (event) => {
     
     try{
 
-        const res = await GuardarPersonaje(event.body)
-        console.log(event.body)
+        const res = await GuardarPersonaje(JSON.parse(event.body))
         return{
             status:200,
             message: res.message,

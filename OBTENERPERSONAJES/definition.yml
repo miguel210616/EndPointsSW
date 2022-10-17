@@ -4,3 +4,10 @@ get-sw-people:
     - httpApi:
         path: /people
         method: get
+
+get-sw-people-dydb:
+  handler: OBTENERPERSONAJES/src/controllers/PersonajeController.ObtenerPersonajesDyDB
+  events:
+    - httpApi:
+        path: /peopleDydb
+        method: get
