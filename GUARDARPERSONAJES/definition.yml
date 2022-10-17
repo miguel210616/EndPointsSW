@@ -1,0 +1,6 @@
+insert-sw-people:
+  handler: GUARDARPERSONAJES/src/controllers/PersonajeController.InsertarPersonaje
+  events:
+    - httpApi:
+        path: /people
+        method: post

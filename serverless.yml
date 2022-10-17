@@ -1,0 +1,32 @@
+service: lmb-sw
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: '20201221'
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:070535722781:table/PersonajesSW
+
+functions:
+  - ${file(OBTENERPERSONAJES/definition.yml)}
+  - ${file(GUARDARPERSONAJES/definition.yml)}
+
+resources:
+  Resources:
+    PersonajesSW:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: PersonajesSW
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH

@@ -1,0 +1,6 @@
+get-sw-people:
+  handler: OBTENERPERSONAJES/src/controllers/PersonajeController.ObtenerPersonaje
+  events:
+    - httpApi:
+        path: /people
+        method: get
